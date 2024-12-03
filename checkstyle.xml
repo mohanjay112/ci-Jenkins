@@ -4,9 +4,7 @@
 <module name="Checker">
     <module name="TreeWalker">
         <!-- Avoid using wildcard imports -->
-        <module name="AvoidStarImport">
-            <property name="allowStatic" value="false"/>
-        </module>
+        <module name="AvoidStarImport" />
         
         <!-- Ensure methods have proper Javadoc -->
         <module name="JavadocMethod">
