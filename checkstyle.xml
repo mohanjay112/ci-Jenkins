@@ -40,10 +40,5 @@
             <property name="max" value="100"/>
         </module>
 
-        <!-- Indentation correction for method call child elements -->
-        <module name="MethodCallIndentation">
-            <property name="option" value="same"/>
-        </module>
-
     </module>
 </module>
