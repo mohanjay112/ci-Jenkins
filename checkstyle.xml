@@ -30,10 +30,6 @@
         <!-- Line length limit -->
         <module name="LineLength">
             <property name="max" value="120"/>
-        </module>
-
-        <module name="LineLength">
-            <property name="max" value="120"/>
             <property name="ignorePattern" value="^package .*"/>
         </module>
 
