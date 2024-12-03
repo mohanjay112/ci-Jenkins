@@ -24,7 +24,7 @@
 
         <!-- Ensure no trailing whitespace -->
         <module name="NoWhitespaceAfter">
-            <property name="allowComments" value="true"/>
+            <!-- Removed the 'allowComments' property -->
         </module>
 
         <!-- Prevent unused imports -->
