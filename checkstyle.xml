@@ -27,11 +27,6 @@
             <!-- Removed the 'allowComments' property -->
         </module>
 
-        <!-- Prevent unused imports -->
-        <module name="ImportOrder">
-            <property name="separateLines" value="true"/>
-        </module>
-
         <!-- Line length limit -->
         <module name="LineLength">
             <property name="max" value="120"/>
