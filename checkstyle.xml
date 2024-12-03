@@ -32,6 +32,11 @@
             <property name="max" value="120"/>
         </module>
 
+        <module name="LineLength">
+            <property name="max" value="120"/>
+            <property name="ignorePattern" value="^package .*"/>
+        </module>
+
         <!-- Visibility and method length rules -->
         <module name="VisibilityModifier"/>
         <module name="MethodLength">
@@ -40,7 +45,8 @@
 
         <!-- Indentation correction for method call child elements -->
         <module name="MethodCallIndentation">
-            <property name="requiredIndent" value="12"/>
+            <property name="option" value="same"/>
         </module>
+
     </module>
 </module>
