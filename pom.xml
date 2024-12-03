@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
@@ -9,16 +10,16 @@
     <url>http://maven.apache.org</url>
 
     <properties>
-        <spring.version>5.3.23</spring.version>  <!-- Updated to Spring 5 -->
-        <spring-security.version>5.0.0.RELEASE</spring-security.version> <!-- Updated Spring Security version -->
-        <spring-data-jpa.version>2.5.4</spring-data-jpa.version> <!-- Updated Spring Data JPA version -->
-        <hibernate.version>5.5.3.Final</hibernate.version> <!-- Updated Hibernate version -->
-        <hibernate-validator.version>6.0.13.Final</hibernate-validator.version> <!-- Updated Hibernate Validator -->
-        <mysql-connector.version>8.0.26</mysql-connector.version> <!-- Updated MySQL Connector version -->
+        <spring.version>5.3.23</spring.version> 
+        <spring-security.version>5.0.0.RELEASE</spring-security.version>
+        <spring-data-jpa.version>2.5.4</spring-data-jpa.version>
+        <hibernate.version>5.5.3.Final</hibernate.version>
+        <hibernate-validator.version>6.0.13.Final</hibernate-validator.version>
+        <mysql-connector.version>8.0.26</mysql-connector.version>
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <jstl.version>1.2</jstl.version>
-        <junit.version>5.7.1</junit.version> <!-- Updated to JUnit 5 -->
-        <logback.version>1.2.3</logback.version> <!-- Updated Logback version -->
+        <junit.version>5.7.1</junit.version>
+        <logback.version>1.2.3</logback.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
@@ -175,7 +176,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.1.0</version> <!-- Updated Checkstyle Plugin version -->
+                <version>3.1.0</version>
                 <executions>
                     <execution>
                         <id>validate</id>
@@ -189,7 +190,7 @@
                     <configLocation>checkstyle.xml</configLocation>
                     <encoding>UTF-8</encoding>
                     <consoleOutput>true</consoleOutput>
-                    <failsOnError>false</failsOnError> <!-- Optional: set to false to prevent build failure on Checkstyle violations -->
+                    <failsOnError>false</failsOnError>
                 </configuration>
             </plugin>
         </plugins>
