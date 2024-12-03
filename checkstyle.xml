@@ -15,7 +15,7 @@
         <!-- Consistent indentation with 4 spaces -->
         <module name="Indentation">
             <property name="tabWidth" value="4"/>
-            <property name="indentation" value="4"/>
+            <property name="column" value="4"/> <!-- This property sets the number of columns for indentation -->
         </module>
 
         <!-- Ensure there is space after control statements -->
