@@ -15,7 +15,6 @@
         <!-- Consistent indentation with 4 spaces -->
         <module name="Indentation">
             <property name="tabWidth" value="4"/> <!-- Correct property for tab width -->
-            <property name="indentLevel" value="4"/> <!-- Indentation for blocks like 'new' -->
         </module>
 
         <!-- Ensure there is space after control statements -->
@@ -43,6 +42,5 @@
         <module name="MethodCallIndentation">
             <property name="requiredIndent" value="12"/>
         </module>
-
     </module>
 </module>
