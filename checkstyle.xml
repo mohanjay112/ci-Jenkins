@@ -3,12 +3,32 @@
         "https://checkstyle.org/dtds/configuration_1_3.dtd">
 <module name="Checker">
     <module name="TreeWalker">
-        <module name="AvoidStarImport" />
-        <module name="JavadocMethod" />
+        <!-- Avoid using wildcard imports -->
+        <module name="AvoidStarImport">
+            <property name="allowStatic" value="false"/>
+        </module>
+        
+        <!-- Ensure methods have proper Javadoc -->
+        <module name="JavadocMethod">
+            <property name="checkConstructors" value="true"/>
+            <property name="minLines" value="2"/>
+        </module>
     </module>
     
-    <!-- LineLength module is placed outside of TreeWalker -->
+    <!-- LineLength module placed outside of TreeWalker to set a max line length of 120 characters -->
     <module name="LineLength">
         <property name="max" value="120"/>
+        <property name="ignorePattern" value="^package|^import|^//.*$"/>
     </module>
+
+    <!-- MagicNumber to avoid hardcoded values (magic numbers) in code -->
+    <module name="MagicNumber">
+        <property name="ignoreNumbers" value="0,1,100"/>
+    </module>
+
+    <!-- Optionally, add additional checks for other rules -->
+    <module name="MethodName">
+        <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+    </module>
+    
 </module>
