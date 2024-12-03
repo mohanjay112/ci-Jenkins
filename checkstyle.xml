@@ -3,22 +3,15 @@
         "https://checkstyle.org/dtds/configuration_1_3.dtd">
 
 <module name="Checker">
-    <!-- TreeWalker module for checking various code style violations -->
     <module name="TreeWalker">
-
         <!-- Avoid wildcard imports -->
         <module name="AvoidStarImport"/>
 
         <!-- Ensure methods have Javadoc -->
-        <module name="JavadocMethod">
-            <!-- Minimum number of lines required for Javadoc (optional, can be adjusted) -->
-            <property name="minLines" value="2"/>
-        </module>
+        <module name="JavadocMethod"/>
 
         <!-- Ensure classes and interfaces have Javadoc -->
-        <module name="JavadocType">
-            <property name="minLines" value="2"/>
-        </module>
+        <module name="JavadocType"/>
 
         <!-- Enforce method name style (camelCase) -->
         <module name="MethodName">
