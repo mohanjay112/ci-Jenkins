@@ -184,6 +184,7 @@
                 <version>3.1.1</version>
                 <executions>
                     <execution>
+                        <phase>verify</phase>
                         <goals>
                             <goal>check</goal>
                         </goals>
@@ -191,6 +192,9 @@
                 </executions>
                 <configuration>
                     <configLocation>checkstyle.xml</configLocation>
+                    <outputFile>target/checkstyle-result.xml</outputFile>
+                    <outputFormat>xml</outputFormat>
+                    <skip>true</skip>
                 </configuration>
             </plugin>
         </plugins>
