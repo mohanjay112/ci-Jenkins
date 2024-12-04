@@ -179,25 +179,25 @@
 
             <!-- Maven Checkstyle Plugin -->
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.1.1</version>
-                <executions>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>3.1.1</version>
+            <executions>
                     <execution>
-                        <phase>verify</phase>
+                        <id>generate-checkstyle-report</id>
+                        <phase>verify</phase> <!-- Generate during 'verify' phase -->
                         <goals>
-                            <goal>check</goal>
+                            <goal>checkstyle</goal>
                         </goals>
                     </execution>
-                </executions>
-                <configuration>
+            </executions>
+            <configuration>
                     <configLocation>checkstyle.xml</configLocation>
-                    <outputFile>target/checkstyle-result.xml</outputFile>
+                    <outputFile>target/checkstyle-result.xml</outputFile> <!-- Ensure file generation -->
                     <outputFormat>xml</outputFormat>
-                    <skip>true</skip>
-                </configuration>
+            </configuration>
             </plugin>
-        </plugins>
+
     </build>
 
     <repositories>
