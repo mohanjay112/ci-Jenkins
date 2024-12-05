@@ -15,6 +15,9 @@ sonarqube   -   nofile   65536
 sonarqube   -   nproc    4096
 EOT
 
+# Apply sysctl settings
+sysctl -p
+
 # Update package list
 sudo apt-get update -y
 
@@ -22,28 +25,24 @@ sudo apt-get update -y
 sudo apt-get install openjdk-17-jdk -y
 
 # Set default Java version
-sudo update-alternatives --config java
+sudo update-alternatives --config java <<< 1
 java -version
 
 # Install PostgreSQL and required packages
-sudo apt update
+sudo apt-get install wget gnupg -y
 wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | sudo apt-key add -
 sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
+sudo apt update
 sudo apt install postgresql postgresql-contrib -y
 
 # Start PostgreSQL service
 sudo systemctl enable postgresql.service
 sudo systemctl start postgresql.service
-sudo systemctl status postgresql.service
 
 # Configure PostgreSQL user and database for SonarQube
-echo "postgres:admin123" | sudo chpasswd
 sudo -u postgres psql -c "CREATE USER sonar WITH ENCRYPTED PASSWORD 'admin123';"
 sudo -u postgres psql -c "CREATE DATABASE sonarqube OWNER sonar;"
 sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE sonarqube TO sonar;"
-
-# Restart PostgreSQL
-systemctl restart postgresql
 
 # Install SonarQube
 sudo mkdir -p /sonarqube/
@@ -52,6 +51,17 @@ sudo curl -O https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9
 sudo apt-get install zip -y
 sudo unzip -o sonarqube-9.7.0.61503.zip -d /opt/
 sudo mv /opt/sonarqube-9.7.0.61503/ /opt/sonarqube
+
+# Determine architecture and set correct paths
+ARCH=$(uname -m)
+if [[ "$ARCH" == "x86_64" ]]; then
+    SONAR_BIN_DIR="linux-x86-64"
+elif [[ "$ARCH" == "aarch64" ]]; then
+    SONAR_BIN_DIR="linux-aarch64"
+else
+    echo "Unsupported architecture: $ARCH"
+    exit 1
+fi
 
 # Create SonarQube user and set permissions
 sudo groupadd sonar
@@ -80,8 +90,8 @@ After=syslog.target network.target
 
 [Service]
 Type=forking
-ExecStart=/opt/sonarqube/bin/linux-x86-64/sonar.sh start
-ExecStop=/opt/sonarqube/bin/linux-x86-64/sonar.sh stop
+ExecStart=/opt/sonarqube/bin/$SONAR_BIN_DIR/sonar.sh start
+ExecStop=/opt/sonarqube/bin/$SONAR_BIN_DIR/sonar.sh stop
 User=sonar
 Group=sonar
 Restart=always
@@ -93,18 +103,15 @@ WantedBy=multi-user.target
 EOT
 
 # Reload systemd and enable SonarQube service
-systemctl daemon-reload
-systemctl enable sonarqube.service
-# Uncomment to start SonarQube service
-# systemctl start sonarqube.service
-# systemctl status sonarqube.service
+sudo systemctl daemon-reload
+sudo systemctl enable sonarqube.service
 
 # Install Nginx
 sudo apt-get install nginx -y
 
 # Remove default Nginx configuration
-rm -rf /etc/nginx/sites-enabled/default
-rm -rf /etc/nginx/sites-available/default
+sudo rm -rf /etc/nginx/sites-enabled/default
+sudo rm -rf /etc/nginx/sites-available/default
 
 # Create Nginx configuration for SonarQube
 cat <<EOT > /etc/nginx/sites-available/sonarqube
@@ -131,15 +138,14 @@ server {
 EOT
 
 # Enable Nginx configuration and restart Nginx
-ln -s /etc/nginx/sites-available/sonarqube /etc/nginx/sites-enabled/sonarqube
-systemctl enable nginx.service
-# Uncomment to restart Nginx
-# systemctl restart nginx.service
+sudo ln -s /etc/nginx/sites-available/sonarqube /etc/nginx/sites-enabled/sonarqube
+sudo systemctl enable nginx.service
+sudo systemctl restart nginx.service
 
 # Open firewall ports for HTTP and SonarQube
 sudo ufw allow 80,9000,9001/tcp
 
-# Reboot system
-echo "System reboot in 30 sec"
-sleep 30
-reboot
+# Start SonarQube service
+sudo systemctl start sonarqube.service
+sudo systemctl status sonarqube.service
+## IF NOT Run Please Chek the it's done installation or not 
