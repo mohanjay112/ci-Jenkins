@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install dependencies (Java 11 and wget)
-yum install java-11-openjdk.x86_64 wget -y
+yum install java-17-openjdk.x86_64 wget -y
 
 # Create necessary directories for Nexus and sonatype-work
 mkdir -p /opt/nexus/
