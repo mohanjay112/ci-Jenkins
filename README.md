@@ -25,5 +25,24 @@ This project demonstrates an automated **Continuous Integration (CI)** pipeline 
 5. Artifact is uploaded to Nexus repository  
 6. Slack sends notification about build success/failure
 
+## 📸 Screenshots
+
+### ✅ Jenkins Job Config
+![Jenkins Build](Screenshots/jenkins-build.png)
+
+
+### ✅ SonarQube Scan
+![Sonar Qube](Screenshots/Sonarqube.png)
+
+### ✅ Nexus Upload
+![Nexus](Screenshots/nexus-repo.png)
+
+### ✅ Slack Notification
+![Slack](Screenshots/slack-message.png)
+
+
+
+
+
 
 
