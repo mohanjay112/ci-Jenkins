@@ -41,6 +41,16 @@ This project demonstrates an automated **Continuous Integration (CI)** pipeline 
 ![Slack](Screenshots/slack-message.png)
 
 
+## Learning Outcome
+
+- Built a working Continuous Integration (CI) pipeline using Jenkins
+- Integrated Maven for Java build automation
+- Connected Jenkins to SonarQube for static code quality analysis
+- Configured Nexus as an artifact repository for versioned WAR uploads
+- Implemented Slack notifications for real-time build status updates
+
+
+
 
 
 
